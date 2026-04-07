@@ -18,8 +18,6 @@ contract DeployMainnetFull is Script {
         vm.setEnv("FOUNDRY_ROOT_CHAINID",             "1");
         vm.setEnv("FOUNDRY_EXPORTS_OVERWRITE_LATEST", "true");
 
-        vm.createSelectFork(getChain("mainnet").rpcUrl);
-
         console.log("Deploying Mainnet ALMProxy, Controller and RateLimits...");
 
         string memory fileSlug = string(abi.encodePacked("mainnet-", vm.envString("ENV")));

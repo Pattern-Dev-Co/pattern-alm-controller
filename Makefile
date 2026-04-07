@@ -1,3 +1,4 @@
+-include .env
 # Staging Full Deployment with Dependencies
 deploy-staging-full :; forge script script/staging/FullStagingDeploy.s.sol:FullStagingDeploy --sender ${ETH_FROM} --broadcast --verify --multi
 
@@ -6,7 +7,7 @@ deploy-mainnet-staging-controller :; ENV=staging forge script script/Deploy.s.so
 deploy-base-staging-controller :; CHAIN=base ENV=staging forge script script/Deploy.s.sol:DeployForeignController --sender ${ETH_FROM} --broadcast --verify
 
 # Production Deployments
-deploy-mainnet-production-full       :; ENV=production forge script script/Deploy.s.sol:DeployMainnetFull --sender ${ETH_FROM} --broadcast --verify
+deploy-mainnet-production-full       :; ENV=production forge script script/Deploy.s.sol:DeployMainnetFull --rpc-url ${MAINNET_RPC_URL} --sender ${ETH_FROM} --private-key ${PRIVATE_KEY} --broadcast --verify --etherscan-api-key ${MAINNET_API_KEY} --retries 10 --delay 10
 deploy-mainnet-production-controller :; ENV=production forge script script/Deploy.s.sol:DeployMainnetController --sender ${ETH_FROM} --broadcast --verify
 
 deploy-arbitrum-one-production-full       :; CHAIN=arbitrum_one ENV=production forge script script/Deploy.s.sol:DeployForeignFull --sender ${ETH_FROM} --broadcast --verify
