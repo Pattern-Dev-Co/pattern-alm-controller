@@ -22,6 +22,9 @@ remappings = [
 [fuzz]
 runs = 1000
 
+[lint]
+lint_on_build = false
+
 [invariant]
 runs = 1
 depth = 100
